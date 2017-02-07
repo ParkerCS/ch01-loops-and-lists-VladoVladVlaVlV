@@ -1,27 +1,55 @@
-#LISTS (35PTS TOTAL)
-#In these exercises you write functions. Of course, you should not only write the functions,
-#you should also write code to test them. For practice, you should also comment your
-#functions as explained above.
+# LISTS (35PTS TOTAL)
+# In these exercises you write functions. Of course, you should not only write the functions,
+# you should also write code to test them. For practice, you should also comment your
+# functions as explained above.
+import random
 
-
-
-#PROBLEM 1 (8-ball - 5pts)
+# PROBLEM 1 (8-ball - 5pts)
 # A magic 8-ball, when asked a question, provides a random answer from a list.
 # The code below contains a list of possible answers. Create a magic 8-ball program that
 # prints a random answer.
-answer_list = [ "It is certain", "It is decidedly so", "Without a \
+answer_list = ["It is certain", "It is decidedly so", "Without a \
 doubt", "Yes, definitely", "You may rely on it", "As I see it, \
 yes", "Most likely", "Outlook good", "Yes", "Signs point to yes",
-"Reply hazy try again", "Ask again later", "Better not tell you \
+               "Reply hazy try again", "Ask again later", "Better not tell you \
 now", "Cannot predict now", "Concentrate and ask again", "Don ' t \
 count on it", "My reply is no", "My sources say no", "Outlook \
-not so good", "Very doubtful" ]
+not so good", "Very doubtful"]
+
+
+def magicball():
+    question = input("Ask the magic ball anything: ")
+    if question:
+        print(answer_list[random.randrange(len(answer_list))])
+
+
+# magicball()
+
+
+
 
 
 # PROBLEM 2 (Shuffle - 5pts)
 # A playing card consists of a suit (Heart, Diamond, Club, Spade) and a value (2,3,4,5,6,7,8,9,10,J,Q,K,A).
 # Create a list of all possible playing cards, which is a deck.
 # Then create a function that shuffles the deck, producing a random order.
+def deckprinter():
+    suit = ["Heart", "Diamond", "Club", "Spade"]
+    value = []
+    deck = []
+    for i in range(2, 11):
+        value.append(i)
+    value.extend(["J", "Q", "K", "A"])
+
+    for i in range(13):
+        for j in range(4):
+            deck.append(str(value[i]) + " of " + str(suit[j]))
+    for i in range(52):
+        deck[i] = deck[random.randrange(1, 52)]
+    print(deck)
+
+
+# deckprinter()
 
 
 # PROBLEM 3 (The sieve of Eratosthenes - 10pts)
@@ -36,6 +64,26 @@ not so good", "Very doubtful" ]
 # Process all the numbers of the list in this way. When you have finished,
 # the only numbers left on the list are primes.
 # Use this method to determine all the primes between 1 and 1000.
+
+def eras(n):
+    number_list = []
+    new_list = []
+
+    for i in range(1, n + 1):
+        number_list.append(i)
+    number_list[0] = 0
+    for i in range(1, len(number_list)):
+        if number_list[i] != 0:
+            new_list.append(number_list[i])
+            for j in range(i + 1, len(number_list)):
+                if number_list[j] % number_list[i] == 0:
+                    number_list[j] = 0
+    print(new_list)
+
+
+# eras(1000)
+
+
 
 # PROBLEM 4 (Tic-Tac-Toe - 15pts)
 # Write a Tic-Tac-Toe program that allows two people to play the game against each other.
@@ -54,6 +102,129 @@ not so good", "Very doubtful" ]
 # pass to a function as an argument if the function needs it.
 # I also use a function opponent(), that takes the player as argument and returns
 # the opponent. I use that to switch players after each move.
+board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+
+
+def show_board():
+    print(" ", board[0][0], "|", board[1][0], "|", board[2][0])
+    print("--------------")
+    print(" ", board[0][1], "|", board[1][1], "|", board[2][1])
+    print("--------------")
+    print(" ", board[0][2], "|", board[1][2], "|", board[2][2])
+
+
+def win_check():
+    if board[0][0] == board[1][0] == board[2][0] == "X" :
+        print("X Wins")
+        return 1
+    elif board[0][0] == board[1][0] == board[2][0] == "O":
+        print("O wins")
+        return 1
+    elif board[0][1] == board[1][1] == board[2][1] == "X" :
+        print("X wins")
+        return 1
+    elif board[0][1] == board[1][1] == board[2][1] == "O":
+        print("O wins")
+        return 1
+    elif board[0][2] == board[1][2] == board[2][2] == "X":
+        print("X wins")
+        return 1
+    elif board[0][2] == board[1][2] == board[2][2] == "O":
+        print("O wins")
+        return 1
+    elif board[0][0] == board[1][1] == board[2][2] == "X":
+        print("X wins")
+        return 1
+    elif board[0][0] == board[1][1] == board[2][2] == "O":
+        print("O wins")
+        return 1
+    elif board[0][2] == board[1][1] == board[2][0] == "X":
+        print("X wins")
+        return 1
+    elif board[0][2] == board[1][1] == board[2][0] == "O":
+        print("O wins")
+        return 1
+    elif board[0][0] == board[0][1] == board[0][2] == "X":
+        print("X wins")
+        return 1
+    elif board[0][0] == board[0][1] == board[0][2] == "O":
+        print("O wins")
+        return 1
+    elif board[1][0] == board[1][1] == board[1][2] == "X":
+        print("X wins")
+        return 1
+    elif board[1][0] == board[1][1] == board[1][2] == "O":
+        print("O wins")
+        return 1
+    elif board[2][0] == board[2][1] == board[2][2] == "X":
+        print("X wins")
+        return 1
+    elif board[2][0] == board[2][1] == board[2][2] == "O":
+        print("O wins")
+        return 1
+    elif board[0][0] != board[1][0] != board[2][0] != board[0][1] != board[1][1] != board[2][1] != board[0][2] != \
+            board[1][2] != board[2][2]:
+        print("Tie")
+        return 1
+
+
+def mainfunc():
+    i = 0
+    done = False
+    '''
+    def choose(i):
+        m=0
+        row = input("Choose your row: ")
+        row = int(row)
+        colum = input("Choose your column: ")
+        colum = int(colum)
+        if (row <= 3 > 0) and (colum <= 3 > 0):
+            if board[colum - 1][row - 1] != "X" and board[colum - 1][row - 1] != "O":
+                if i % 2 == 0:
+                    board[colum - 1][row - 1] = "X"
+                else:
+                    board[colum - 1][row - 1] = "O"
+                show_board()
+
+            else:
+                print("Sorry the spot is taken")
+                i-=1
+        else:
+            print("Sorry that point does not exist")
+            i-=1
+        return i
+    '''
+    while not done:
+        win_check()
+        win = win_check()
+        if win == 1:
+            done = True
+
+        i += 1
+        row = input("Choose your row: ")
+        row = int(row)
+        colum = input("Choose your column: ")
+        colum = int(colum)
+        if (row <= 3 > 0) and (colum <= 3 > 0):
+            if board[colum - 1][row - 1] != "X" and board[colum - 1][row - 1] != "O":
+                if i % 2 == 0:
+                    board[colum - 1][row - 1] = "X"
+                else:
+                    board[colum - 1][row - 1] = "O"
+                show_board()
+
+            else:
+                print("Sorry the spot is taken")
+                i -= 1
+        else:
+            print("Sorry that point does not exist")
+            i -= 1
+
+
+
+
+mainfunc()
+
 
 # The main program will be something along the lines of (in pseudo-code):
 # display board
