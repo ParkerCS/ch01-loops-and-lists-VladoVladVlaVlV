@@ -1,3 +1,9 @@
+# There is no check for a draw in tic-tac-toe
+# nice work on the game though.
+# There are some places where the code could be more efficient.  Particularly in the checks.  You check both x and o for every combination.
+# Think about the DRY principle.
+# It would be easier to send the player (x or o) to the check.  This would be easier than copy paste and adding unnecessary lines of code and conditional checks. 
+
 # LISTS (35PTS TOTAL)
 # In these exercises you write functions. Of course, you should not only write the functions,
 # you should also write code to test them. For practice, you should also comment your
@@ -23,7 +29,7 @@ def magicball():
         print(answer_list[random.randrange(len(answer_list))])
 
 
-# magicball()
+magicball()
 
 
 
@@ -49,7 +55,7 @@ def deckprinter():
     print(deck)
 
 
-# deckprinter()
+deckprinter()
 
 
 # PROBLEM 3 (The sieve of Eratosthenes - 10pts)
